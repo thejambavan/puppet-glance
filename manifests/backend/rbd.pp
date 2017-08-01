@@ -8,6 +8,9 @@
 #  [*rbd_store_user*]
 #    Optional. Default: $::os_service_default.
 #
+#  [*rbd_secret_uuid*]
+#    libvirt UUID of the RBD secret
+#
 #  [*rbd_store_pool*]
 #    Optional. Default: $::os_service_default.
 #
@@ -46,6 +49,7 @@
 #
 class glance::backend::rbd(
   $rbd_store_user         = $::os_service_default,
+  $rbd_secret_uuid        = $::os_service_default,
   $rbd_store_ceph_conf    = $::os_service_default,
   $rbd_store_pool         = $::os_service_default,
   $rbd_store_chunk_size   = $::os_service_default,
@@ -67,6 +71,7 @@ class glance::backend::rbd(
   glance_api_config {
     'glance_store/rbd_store_ceph_conf':    value => $rbd_store_ceph_conf;
     'glance_store/rbd_store_user':         value => $rbd_store_user;
+    'glance_store/rbd_secret_uuid':        value => $rbd_secret_uuid;
     'glance_store/rbd_store_pool':         value => $rbd_store_pool;
     'glance_store/rbd_store_chunk_size':   value => $rbd_store_chunk_size;
     'glance_store/rados_connect_timeout':  value => $rados_connect_timeout;
